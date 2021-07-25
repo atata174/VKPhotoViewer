@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="VKViewer" customModuleProvider="target">
+            <connections>
+                <outlet property="hyperlinkButton" destination="e3a-bf-dbm" id="Bjb-66-g5t"/>
+                <outlet property="logInButton" destination="SGG-Fo-ktv" id="4a9-GB-ntV"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGG-Fo-ktv">
+                    <rect key="frame" x="40" y="472" width="240" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Bwq-3J-agS"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3a-bf-dbm">
+                    <rect key="frame" x="40" y="60" width="240" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="zvo-ho-AeC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="SGG-Fo-ktv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="D8s-YV-TTA"/>
+                <constraint firstItem="e3a-bf-dbm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="Enj-Ui-BKx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e3a-bf-dbm" secondAttribute="trailing" constant="40" id="IJ2-3b-icV"/>
+                <constraint firstItem="e3a-bf-dbm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="Ruk-R1-ilW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SGG-Fo-ktv" secondAttribute="trailing" constant="40" id="sup-JR-lcX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SGG-Fo-ktv" secondAttribute="bottom" constant="46" id="vqf-d2-LMT"/>
+            </constraints>
+            <point key="canvasLocation" x="138.75" y="113.02816901408451"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
