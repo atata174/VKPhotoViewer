@@ -9,7 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let galleryLink = "https://vk.com/album-128666765_266276915"
+    private let galleryLink = "https://vk.com/album-128666765_266276915"
+    private var authService: AuthService!
     
     @IBOutlet var logInButton: UIButton!
     @IBOutlet var hyperlinkButton: UIButton!
@@ -18,7 +19,13 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        authService = SceneDelegate.shared().authService
+        
         mainViewSetup()
+    }
+    
+    @IBAction func logInActionButton(_ sender: UIButton) {
+        authService.wakUpSession()
     }
     
     func mainViewSetup() {
@@ -30,9 +37,9 @@ class MainViewController: UIViewController {
         logInButton.layer.cornerRadius = 10
         
         // hyperlink button view
-        hyperlinkButton.setTitle("Mobile Up Gallery", for: .normal)
+        hyperlinkButton.setTitle("Mobile Up \nGallery", for: .normal)
         hyperlinkButton.setTitleColor(.black, for: .normal)
         hyperlinkButton.titleLabel?.numberOfLines = 2
     }
-
+    
 }
