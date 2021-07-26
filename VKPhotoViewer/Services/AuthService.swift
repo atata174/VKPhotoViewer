@@ -38,7 +38,9 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
                 VKSdk.authorize(scope)
             case .authorized:
                 print("authorized")
+                self.delegate?.authServiceSignIn()
             default:
+                self.delegate?.authServiceSighInDidFail()
                 fatalError(error!.localizedDescription)
             }
         }

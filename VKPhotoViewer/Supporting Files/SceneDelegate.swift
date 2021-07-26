@@ -40,12 +40,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthServiceDelegate {
     
     func authServiceShouldShow(viewController: UIViewController) {
         print(#function)
-        window?.rootViewController?.present(viewController, animated: true, completion: nil)
+        let modalVC = viewController
+        modalVC.modalPresentationStyle = .automatic
+        window?.rootViewController?.present(modalVC, animated: true, completion: nil)
 
     }
     
     func authServiceSignIn() {
         print(#function)
+        let layout = UICollectionViewFlowLayout()
+        let albumVC = AlbumViewController(collectionViewLayout: layout)
+        window?.rootViewController = UINavigationController(rootViewController: albumVC)
     }
     
     func authServiceSighInDidFail() {
