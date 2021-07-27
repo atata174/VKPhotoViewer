@@ -10,10 +10,21 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class AlbumViewController: UICollectionViewController {
+    
+    private var fetcher: DataFetcher = NetworkManager(networking: NetworkService())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
+        
+        // for tests
+        
+        fetcher.getAlbum { (albumResponse) in
+            guard let albumResponse = albumResponse else { return }
+            albumResponse.items.map { (albumItem) in
+                print(albumItem.date)
+            }
+        }
         
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 

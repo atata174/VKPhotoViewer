@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     private var authService: AuthService!
     
     @IBOutlet var logInButton: UIButton!
-    @IBOutlet var hyperlinkButton: UIButton!
+    @IBOutlet var mainTitleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +36,9 @@ class MainViewController: UIViewController {
         logInButton.setTitleColor(.white, for: .normal)
         logInButton.layer.cornerRadius = 10
         
-        // hyperlink button view
-        hyperlinkButton.setTitle("Mobile Up \nGallery", for: .normal)
-        hyperlinkButton.setTitleColor(.black, for: .normal)
-        hyperlinkButton.titleLabel?.numberOfLines = 2
+        mainTitleLabel.text = "Mobile Up \nGallery"
+        mainTitleLabel.numberOfLines = 2
+        
     }
     
 }

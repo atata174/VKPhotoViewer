@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="VKPhotoViewer" customModuleProvider="target">
             <connections>
-                <outlet property="hyperlinkButton" destination="e3a-bf-dbm" id="Bjb-66-g5t"/>
                 <outlet property="logInButton" destination="SGG-Fo-ktv" id="4a9-GB-ntV"/>
+                <outlet property="mainTitleLabel" destination="xqY-bl-ud5" id="x27-Bj-fQ0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,22 +31,23 @@
                         <action selector="logInActionButton:" destination="-1" eventType="touchUpInside" id="BHd-kD-GBP"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3a-bf-dbm">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqY-bl-ud5">
                     <rect key="frame" x="24" y="164" width="272" height="114"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="114" id="zvo-ho-AeC"/>
+                        <constraint firstAttribute="height" constant="114" id="zO1-4e-8iO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
-                    <state key="normal" title="Button"/>
-                </button>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="xqY-bl-ud5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="8cE-zy-ReF"/>
                 <constraint firstItem="SGG-Fo-ktv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="D8s-YV-TTA"/>
-                <constraint firstItem="e3a-bf-dbm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="Enj-Ui-BKx"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e3a-bf-dbm" secondAttribute="trailing" constant="24" id="IJ2-3b-icV"/>
-                <constraint firstItem="e3a-bf-dbm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="164" id="Ruk-R1-ilW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xqY-bl-ud5" secondAttribute="trailing" constant="24" id="mAy-1x-gQp"/>
+                <constraint firstItem="xqY-bl-ud5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="164" id="mqr-xK-itm"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SGG-Fo-ktv" secondAttribute="trailing" constant="24" id="sup-JR-lcX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SGG-Fo-ktv" secondAttribute="bottom" constant="50" id="vqf-d2-LMT"/>
             </constraints>
