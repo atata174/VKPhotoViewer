@@ -11,14 +11,15 @@ private let reuseIdentifier = "Cell"
 
 class AlbumViewController: UICollectionViewController {
     
-    private var networkManager = NetworkManager(networkComponents: NetworkComponents())
+    private let networkManager = NetworkManager(networkComponents: NetworkComponents())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
+        title = "Mobile Up Gallery"
         
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
     }
 
     // MARK: UICollectionViewDataSource
@@ -33,10 +34,9 @@ class AlbumViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .black
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
         
-    
+        cell.albumImage.image = UIImage(named: "photo")
         return cell
     }
 
@@ -48,11 +48,19 @@ class AlbumViewController: UICollectionViewController {
 extension AlbumViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        return CGSize(width: collectionView.frame.width / 2 - 2, height: collectionView.frame.width / 2 - 2)
+        let size:CGFloat = (collectionView.frame.size.width - 3) / 2.0
+        return CGSize(width: size, height: size)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        1
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        1
+    }
+    
 }
