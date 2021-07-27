@@ -14,7 +14,7 @@
 		67CE750D26AE058500274003 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67CE750B26AE058500274003 /* MainViewController.xib */; };
 		67CE751526AE113900274003 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE751426AE113900274003 /* AuthService.swift */; };
 		67CE751F26AF043900274003 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE751E26AF043900274003 /* AlbumViewController.swift */; };
-		67CE752426AF17A600274003 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE752326AF17A500274003 /* NetworkService.swift */; };
+		67CE752426AF17A600274003 /* NetworkComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE752326AF17A500274003 /* NetworkComponents.swift */; };
 		67CE752726AF272B00274003 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE752626AF272B00274003 /* API.swift */; };
 		67CE752A26AF4DA000274003 /* AlbumResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE752926AF4DA000274003 /* AlbumResponse.swift */; };
 		94FBC3B0A50E4AD262FC6344 /* Pods_VKPhotoViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D88899E19BBCDFACB193CE /* Pods_VKPhotoViewer.framework */; };
@@ -30,7 +30,7 @@
 		67CE750B26AE058500274003 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		67CE751426AE113900274003 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		67CE751E26AF043900274003 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
-		67CE752326AF17A500274003 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		67CE752326AF17A500274003 /* NetworkComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkComponents.swift; sourceTree = "<group>"; };
 		67CE752626AF272B00274003 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		67CE752926AF4DA000274003 /* AlbumResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumResponse.swift; sourceTree = "<group>"; };
 		906552C17D1D41530B916768 /* Pods-VKPhotoViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKPhotoViewer.debug.xcconfig"; path = "Target Support Files/Pods-VKPhotoViewer/Pods-VKPhotoViewer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				67CE751426AE113900274003 /* AuthService.swift */,
-				67CE752326AF17A500274003 /* NetworkService.swift */,
+				67CE752326AF17A500274003 /* NetworkComponents.swift */,
 				67CE752626AF272B00274003 /* API.swift */,
 			);
 			path = Services;
@@ -256,7 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67CE752426AF17A600274003 /* NetworkService.swift in Sources */,
+				67CE752426AF17A600274003 /* NetworkComponents.swift in Sources */,
 				67CE751F26AF043900274003 /* AlbumViewController.swift in Sources */,
 				67CE750C26AE058500274003 /* MainViewController.swift in Sources */,
 				67CE74E526ADC50600274003 /* AppDelegate.swift in Sources */,

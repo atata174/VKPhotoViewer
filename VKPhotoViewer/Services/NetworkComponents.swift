@@ -7,11 +7,7 @@
 
 import Foundation
 
-protocol Networking {
-    func request(path: String, parameters: [String: String], completion: @escaping (Data?, Error?) -> Void)
-}
-
-class NetworkService: Networking {
+class NetworkComponents {
     
     private let authService: AuthService
     
@@ -50,38 +46,32 @@ class NetworkService: Networking {
     }
 }
 
-protocol DataFetcher {
-    func getAlbum(response: @escaping (AlbumResponse?) -> Void)
-}
-
-struct NetworkManager: DataFetcher {
+struct NetworkManager {
     
-    let networking: Networking
+    let networkComponents: NetworkComponents
     
-    init(networking: Networking) {
-        self.networking = networking
+    init(networkComponents: NetworkComponents) {
+        self.networkComponents = networkComponents
     }
     
     func getAlbum(response: @escaping (AlbumResponse?) -> Void) {
         let parameters = ["album_id": "266276915", "owner_id": "-128666765"]
         
-        networking.request(path: API.photosGet, parameters: parameters) { (data, error) in
+        networkComponents.request(path: API.photosGet, parameters: parameters) { (data, error) in
             if let error = error {
                 print(error.localizedDescription)
                 response(nil)
             }
-
-            let decoded = self.decodeJSON(type: AlbumResponseWrapped.self, from: data)
-            response(decoded?.response)
+            
+            guard let data = data else { return }
+            
+            do {
+                let decoded = try JSONDecoder().decode(AlbumResponseWrapped.self, from: data)
+                response(decoded.response)
+            } catch let error {
+                print(error.localizedDescription)
+            }
         }
     }
-    
-    private func decodeJSON<T: Decodable>(type: T.Type, from: Data?) -> T? {
-        guard let data = from, let response = try? JSONDecoder().decode(type.self, from: data) else { return nil }
-        return response
-    }
-    
-    
-    
-    
+
 }

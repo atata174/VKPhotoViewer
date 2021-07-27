@@ -13,3 +13,4 @@ struct API {
     static let version = "5.131"
     static let photosGet = "/method/photos.get"
 }
+
