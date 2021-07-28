@@ -16,11 +16,17 @@ class PhotoCell: UICollectionViewCell {
         return image
     } ()
     
-    var spinnerView: UIActivityIndicatorView!
+    var spinnerView: UIActivityIndicatorView! = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        spinnerView = showSpinner(in: self)
+        spinnerView.center = contentView.center
         layoutSubviews()
         setup()
     }
@@ -47,13 +53,13 @@ class PhotoCell: UICollectionViewCell {
 
     }
     
-    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .white
-        activityIndicator.center = view.center
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-        
-        return activityIndicator
-    }
+//    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
+//        let activityIndicator = UIActivityIndicatorView(style: .large)
+//        activityIndicator.color = .white
+//        activityIndicator.center = view.center
+//        activityIndicator.startAnimating()
+//        activityIndicator.hidesWhenStopped = true
+//
+//        return activityIndicator
+//    }
 }

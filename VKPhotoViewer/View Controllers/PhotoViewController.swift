@@ -52,6 +52,20 @@ class PhotoViewController: UIViewController {
     
     @objc func shareAction() {
         print("share")
+        guard let image = photoImageView.image else {
+            print("No image found")
+            return
+        }
+        
+        let shareController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        shareController.completionWithItemsHandler = { _, bool, _, error in
+            if bool {
+                print("Успешно")
+            }
+        }
+        
+        present(shareController, animated: true)
     }
     
     @objc func backAction() {

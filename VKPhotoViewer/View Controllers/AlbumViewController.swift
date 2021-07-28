@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 private let reuseIdentifier = "Cell"
 
@@ -17,13 +18,25 @@ class AlbumViewController: UICollectionViewController {
             collectionView.reloadData()
         }
     }
-    private var photosUrl: [String]! = []
+    private var album: AlbumResponse? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "d MMMM yyyy"
+        return dateFormatter
+    } ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         networkManager.getAlbum { (album) in
             guard let count = album?.count else { return }
+            self.album = album
             self.albumCount = count
         }
         
@@ -31,8 +44,6 @@ class AlbumViewController: UICollectionViewController {
         self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         setupNavigationBar()
-        networkOperations()
-        
     }
     
     private func setupNavigationBar() {
@@ -50,17 +61,8 @@ class AlbumViewController: UICollectionViewController {
     
     @objc private func logOutAction(){
         print("logout")
-    }
-    
-    private func networkOperations(){
-        networkManager.getAlbum { (album) in
-            guard let album = album?.items else { return }
-            self.photosUrl.append(
-                contentsOf: album.map { (photos) -> String in
-                    guard let url = photos.sizes.last?.url else { return ""}
-                    return url
-                }
-            )
+        dismiss(animated: true) {
+            VKSdk.forceLogout()
         }
     }
 }
@@ -80,20 +82,24 @@ extension AlbumViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
         
-        networkManager.getAlbum { (response) in
-            guard let albumResponse = response else { return }
-            guard let url = albumResponse.items[indexPath.row].sizes.last?.url else { return }
-            cell.albumImage.fetchImage(from: url)
-            cell.spinnerView.stopAnimating()
-        }
+        guard let url = album?.items[indexPath.row].imgSrc else { return cell }
+        cell.albumImage.fetchImage(from: url)
+        cell.spinnerView.stopAnimating()
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let url = album?.items[indexPath.row].imgSrc else { return }
+        guard let datePhoto = album?.items[indexPath.row].date else { return}
         let photoVC = PhotoViewController()
-        photoVC.photoImageView.fetchImage(from: photosUrl[indexPath.row])
+        photoVC.photoImageView.fetchImage(from: url)
         
+        let date = Date(timeIntervalSince1970: TimeInterval(datePhoto))
+        let dateTitle = self.dateFormatter.string(from: date)
+        
+        photoVC.navigationTitle = dateTitle
+
         let navVC = UINavigationController(rootViewController: photoVC)
         navVC.modalPresentationStyle = .fullScreen
         

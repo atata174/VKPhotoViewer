@@ -18,6 +18,7 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     private let appId = "7910742"
     private let vkSdk: VKSdk
+    private let scope = ["offline"]
     
     weak var delegate: AuthServiceDelegate?
     
@@ -34,18 +35,17 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func wakUpSession() {
-        let scope = ["offline"]
         VKSdk.wakeUpSession(scope) { (state, error) in
             switch state {
             case .initialized:
                 print("initialized")
-                VKSdk.authorize(scope)
+                VKSdk.authorize(self.scope)
             case .authorized:
                 print("authorized")
                 self.delegate?.authServiceSignIn()
             default:
                 self.delegate?.authServiceSighInDidFail()
-                fatalError(error!.localizedDescription)
+                fatalError("Ошибка при авторизации: " + error!.localizedDescription)
             }
         }
     }
@@ -54,16 +54,13 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
         print(#function)
         delegate?.authServiceShouldShow(viewController: controller)
     }
-    
-    func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
-        print(#function)
-    }
-    
-    
+
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
         print(#function)
         if result.token != nil {
             delegate?.authServiceSignIn()
+        } else if result.error != nil {
+            print("Пользователь отменил авторизацию или произошла ошибка: " + result.error.localizedDescription)
         }
     }
     
@@ -72,5 +69,7 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
         delegate?.authServiceSighInDidFail()
     }
     
-
+    func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
+        print(#function)
+    }
 }

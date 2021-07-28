@@ -28,8 +28,7 @@ class MainViewController: UIViewController {
     }
     
     func mainViewSetup() {
-        
-        // login button view
+
         logInButton.backgroundColor = .black
         logInButton.setTitle("Вход через VK", for: .normal)
         logInButton.setTitleColor(.white, for: .normal)
