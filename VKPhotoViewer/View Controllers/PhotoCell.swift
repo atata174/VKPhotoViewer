@@ -12,13 +12,15 @@ class PhotoCell: UICollectionViewCell {
     var albumImage: ImageViewManager = {
         let image = ImageViewManager()
         image.clipsToBounds = true
-        image.backgroundColor = .systemBlue
+        image.contentMode = .scaleAspectFill
         return image
     } ()
     
+    var spinnerView: UIActivityIndicatorView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        spinnerView = showSpinner(in: self)
         layoutSubviews()
         setup()
     }
@@ -29,8 +31,8 @@ class PhotoCell: UICollectionViewCell {
     
     
     func setup() {
-        self.backgroundColor = UIColor(red: 225 / 255, green: 225 / 255, blue: 235 / 255, alpha: 1)
         self.addSubview(albumImage)
+        self.addSubview(spinnerView)
     }
     
     override func layoutSubviews() {
@@ -43,5 +45,15 @@ class PhotoCell: UICollectionViewCell {
             width: frameWidth,
             height: frameWidth)
 
+    }
+    
+    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        
+        return activityIndicator
     }
 }

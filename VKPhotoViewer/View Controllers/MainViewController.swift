@@ -9,7 +9,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private let galleryLink = "https://vk.com/album-128666765_266276915"
     private var authService: AuthService!
     
     @IBOutlet var logInButton: UIButton!

@@ -37,7 +37,6 @@ class ImageViewManager: UIImageView {
             image = cachedImage
             return
         }
-        
         ImageManager.shared.fetchImage(from: imageURL) { (data, response) in
             DispatchQueue.main.async {
                 self.image = UIImage(data: data)
