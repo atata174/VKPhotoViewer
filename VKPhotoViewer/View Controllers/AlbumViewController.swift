@@ -60,7 +60,6 @@ class AlbumViewController: UICollectionViewController {
     }
     
     @objc private func logOutAction(){
-        print("logout")
         dismiss(animated: true) {
             VKSdk.forceLogout()
         }

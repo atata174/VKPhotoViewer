@@ -13,6 +13,9 @@ class PhotoViewController: UIViewController {
         let image = ImageViewManager()
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
+        image.isUserInteractionEnabled = true
+        
+
         return image
     } ()
     
@@ -25,6 +28,9 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
+        photoImageView.addGestureRecognizer(pinch)
         
         setupNavBar()
         layoutSubviews()
@@ -51,7 +57,6 @@ class PhotoViewController: UIViewController {
     }
     
     @objc func shareAction() {
-        print("share")
         guard let image = photoImageView.image else {
             print("No image found")
             return
@@ -61,7 +66,7 @@ class PhotoViewController: UIViewController {
         
         shareController.completionWithItemsHandler = { _, bool, _, error in
             if bool {
-                print("Успешно")
+                self.successAlert()
             }
         }
         
@@ -70,6 +75,14 @@ class PhotoViewController: UIViewController {
     
     @objc func backAction() {
         dismiss(animated: true)
+    }
+    
+    private func successAlert() {
+        let alert = UIAlertController(title: "Сохранено", message: "Изображение успешно загружено в галерею", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        self.present(alert, animated: true)
     }
     
     func layoutSubviews() {
@@ -84,7 +97,12 @@ class PhotoViewController: UIViewController {
             photoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
- 
-
+    }
+    
+    @objc private func handleZoom(recognizer: UIPinchGestureRecognizer){
+        if let view = recognizer.view {
+            view.transform = view.transform.scaledBy(x: recognizer.scale, y: recognizer.scale)
+            recognizer.scale = 1
+        }
     }
 }

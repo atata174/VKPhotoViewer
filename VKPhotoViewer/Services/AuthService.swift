@@ -29,7 +29,7 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     override init() {
         vkSdk = VKSdk.initialize(withAppId: appId)
         super.init()
-        print("VKSdk initialize")
+        wakUpSession()
         vkSdk.register(self)
         vkSdk.uiDelegate = self
     }
@@ -38,7 +38,6 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
         VKSdk.wakeUpSession(scope) { (state, error) in
             switch state {
             case .initialized:
-                print("initialized")
                 VKSdk.authorize(self.scope)
             case .authorized:
                 print("authorized")

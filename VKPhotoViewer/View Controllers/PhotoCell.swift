@@ -35,7 +35,6 @@ class PhotoCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func setup() {
         self.addSubview(albumImage)
         self.addSubview(spinnerView)
@@ -50,16 +49,5 @@ class PhotoCell: UICollectionViewCell {
             y: 0,
             width: frameWidth,
             height: frameWidth)
-
     }
-    
-//    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
-//        let activityIndicator = UIActivityIndicatorView(style: .large)
-//        activityIndicator.color = .white
-//        activityIndicator.center = view.center
-//        activityIndicator.startAnimating()
-//        activityIndicator.hidesWhenStopped = true
-//
-//        return activityIndicator
-//    }
 }

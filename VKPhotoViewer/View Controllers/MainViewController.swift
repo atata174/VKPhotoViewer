@@ -17,9 +17,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         authService = SceneDelegate.shared().authService
-        
         mainViewSetup()
     }
     
