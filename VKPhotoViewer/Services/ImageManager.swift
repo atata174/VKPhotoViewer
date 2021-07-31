@@ -16,7 +16,7 @@ class ImageManager {
     func fetchImage(from url: URL, completion: @escaping (Data, URLResponse) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, let response = response else {
-                print(error?.localizedDescription ?? "No error description")
+                SceneDelegate.shared().authService.delegate?.showAlert(title: "Ошибка при загрузке изображения", message: error?.localizedDescription ?? "No error description" , completion: nil)
                 return
             }
             guard url == response.url else { return }

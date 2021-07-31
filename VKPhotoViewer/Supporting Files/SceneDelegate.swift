@@ -39,14 +39,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthServiceDelegate {
     // MARK: - AuthServiceDelegate
     
     func authServiceShouldShow(viewController: UIViewController) {
-        print(#function)
         let modalVC = viewController
         modalVC.modalPresentationStyle = .automatic
         window?.rootViewController?.present(modalVC, animated: true)
     }
     
     func authServiceSignIn() {
-        print(#function)
         let layout = UICollectionViewFlowLayout()
         let albumVC = AlbumViewController(collectionViewLayout: layout)
         let navVC = UINavigationController(rootViewController: albumVC)
@@ -55,7 +53,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, AuthServiceDelegate {
     }
     
     func authServiceSighInDidFail() {
-        print(#function)
+        showAlert(title: "Ошибка", message: "Ошибка при авторизации или нет доступа к сети", completion: nil)
+    }
+    
+    func showAlert(title: String, message: String,  completion: (() -> Void)? = nil) {
+        let alert = AlertViewController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        window?.rootViewController?.present(alert, animated: true, completion: completion)
     }
     
 }

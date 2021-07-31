@@ -48,6 +48,8 @@ class NetworkComponents {
 
 struct NetworkManager {
     
+    weak var delegate = SceneDelegate.shared().authService.delegate
+    
     let networkComponents: NetworkComponents
     
     init(networkComponents: NetworkComponents) {
@@ -59,7 +61,7 @@ struct NetworkManager {
         
         networkComponents.request(path: API.photosGet, parameters: parameters) { (data, error) in
             if let error = error {
-                print(error.localizedDescription)
+                delegate?.showAlert(title: "Битая ссылка", message: error.localizedDescription , completion: nil)
                 response(nil)
             }
             
@@ -69,7 +71,7 @@ struct NetworkManager {
                 let decoded = try JSONDecoder().decode(AlbumResponseWrapped.self, from: data)
                 response(decoded.response)
             } catch let error {
-                print(error.localizedDescription)
+                delegate?.showAlert(title: "Ошибка декодирования", message: error.localizedDescription , completion: nil)
             }
         }
     }

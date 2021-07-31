@@ -14,8 +14,6 @@ class PhotoViewController: UIViewController {
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFit
         image.isUserInteractionEnabled = true
-        
-
         return image
     } ()
     
@@ -66,7 +64,9 @@ class PhotoViewController: UIViewController {
         
         shareController.completionWithItemsHandler = { _, bool, _, error in
             if bool {
-                self.successAlert()
+                let alert = AlertViewController(title: "Сохранено", message: "Изображение загружено в Фотогалерею", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
         }
         
@@ -75,14 +75,6 @@ class PhotoViewController: UIViewController {
     
     @objc func backAction() {
         dismiss(animated: true)
-    }
-    
-    private func successAlert() {
-        let alert = UIAlertController(title: "Сохранено", message: "Изображение успешно загружено в галерею", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-        self.present(alert, animated: true)
     }
     
     func layoutSubviews() {

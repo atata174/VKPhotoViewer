@@ -12,6 +12,7 @@ protocol AuthServiceDelegate: class {
     func authServiceShouldShow(viewController: UIViewController)
     func authServiceSignIn()
     func authServiceSighInDidFail()
+    func showAlert(title: String, message: String, completion: (() -> Void)?)
 }
 
 class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
@@ -40,35 +41,30 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
             case .initialized:
                 VKSdk.authorize(self.scope)
             case .authorized:
-                print("authorized")
                 self.delegate?.authServiceSignIn()
             default:
                 self.delegate?.authServiceSighInDidFail()
-                fatalError("Ошибка при авторизации: " + error!.localizedDescription)
             }
         }
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController!) {
-        print(#function)
         delegate?.authServiceShouldShow(viewController: controller)
     }
-
+    
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-        print(#function)
         if result.token != nil {
             delegate?.authServiceSignIn()
         } else if result.error != nil {
-            print("Пользователь отменил авторизацию или произошла ошибка: " + result.error.localizedDescription)
+            delegate?.showAlert(title: "Пользователь отменил авторизацию или произошла ошибка", message:  result.error.localizedDescription, completion: nil)
         }
     }
     
     func vkSdkUserAuthorizationFailed() {
-        print(#function)
         delegate?.authServiceSighInDidFail()
     }
     
     func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
-        print(#function)
+        delegate?.showAlert(title: "Произошла ошибка", message: "Требуется ввести код с картинки", completion: nil)
     }
 }
