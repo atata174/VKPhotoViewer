@@ -20,7 +20,7 @@
 		67CE752426AF17A600274003 /* NetworkComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE752326AF17A500274003 /* NetworkComponents.swift */; };
 		67CE752726AF272B00274003 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE752626AF272B00274003 /* API.swift */; };
 		67CE752A26AF4DA000274003 /* AlbumResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE752926AF4DA000274003 /* AlbumResponse.swift */; };
-		7E6D21DDF2EFC1D3D3F29D11 /* Pods_VKPhotoViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D88899E19BBCDFACB193CE /* Pods_VKPhotoViewer.framework */; };
+		F4AE4C7224B46828CFD7A286 /* Pods_VKPhotoViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DC8BDC6DEC39E2E26BBFA /* Pods_VKPhotoViewer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +39,9 @@
 		67CE752326AF17A500274003 /* NetworkComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkComponents.swift; sourceTree = "<group>"; };
 		67CE752626AF272B00274003 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		67CE752926AF4DA000274003 /* AlbumResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumResponse.swift; sourceTree = "<group>"; };
-		906552C17D1D41530B916768 /* Pods-VKPhotoViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKPhotoViewer.debug.xcconfig"; path = "Target Support Files/Pods-VKPhotoViewer/Pods-VKPhotoViewer.debug.xcconfig"; sourceTree = "<group>"; };
-		A222B0C8223B06653F7DFF8E /* Pods-VKPhotoViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKPhotoViewer.release.xcconfig"; path = "Target Support Files/Pods-VKPhotoViewer/Pods-VKPhotoViewer.release.xcconfig"; sourceTree = "<group>"; };
-		F0D88899E19BBCDFACB193CE /* Pods_VKPhotoViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKPhotoViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1D3F4AF1592F54B489E1BA8 /* Pods-VKPhotoViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKPhotoViewer.debug.xcconfig"; path = "Target Support Files/Pods-VKPhotoViewer/Pods-VKPhotoViewer.debug.xcconfig"; sourceTree = "<group>"; };
+		CE55955741A38476F025944C /* Pods-VKPhotoViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKPhotoViewer.release.xcconfig"; path = "Target Support Files/Pods-VKPhotoViewer/Pods-VKPhotoViewer.release.xcconfig"; sourceTree = "<group>"; };
+		F46DC8BDC6DEC39E2E26BBFA /* Pods_VKPhotoViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKPhotoViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E6D21DDF2EFC1D3D3F29D11 /* Pods_VKPhotoViewer.framework in Frameworks */,
+				F4AE4C7224B46828CFD7A286 /* Pods_VKPhotoViewer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,8 +59,8 @@
 		2D25CBB289D608461973AD34 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				906552C17D1D41530B916768 /* Pods-VKPhotoViewer.debug.xcconfig */,
-				A222B0C8223B06653F7DFF8E /* Pods-VKPhotoViewer.release.xcconfig */,
+				C1D3F4AF1592F54B489E1BA8 /* Pods-VKPhotoViewer.debug.xcconfig */,
+				CE55955741A38476F025944C /* Pods-VKPhotoViewer.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -71,7 +71,7 @@
 				67CE74E326ADC50600274003 /* VKPhotoViewer */,
 				67CE74E226ADC50600274003 /* Products */,
 				2D25CBB289D608461973AD34 /* Pods */,
-				F4EFD43DDF818BD06CF8F6D3 /* Frameworks */,
+				CC199E7408E9A8A44956FD28 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,10 +136,10 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F4EFD43DDF818BD06CF8F6D3 /* Frameworks */ = {
+		CC199E7408E9A8A44956FD28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F0D88899E19BBCDFACB193CE /* Pods_VKPhotoViewer.framework */,
+				F46DC8BDC6DEC39E2E26BBFA /* Pods_VKPhotoViewer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,11 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67CE74F526ADC50800274003 /* Build configuration list for PBXNativeTarget "VKPhotoViewer" */;
 			buildPhases = (
-				A8CFB228214144AE63AC7854 /* [CP] Check Pods Manifest.lock */,
+				A0EBBE0A813EC5F4AFB5AB66 /* [CP] Check Pods Manifest.lock */,
 				67CE74DD26ADC50600274003 /* Sources */,
 				67CE74DE26ADC50600274003 /* Frameworks */,
 				67CE74DF26ADC50600274003 /* Resources */,
-				AFA727A06F99733E45486519 /* [CP] Embed Pods Frameworks */,
+				DF2C6F414F2E59C1D8431880 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -210,7 +210,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A8CFB228214144AE63AC7854 /* [CP] Check Pods Manifest.lock */ = {
+		A0EBBE0A813EC5F4AFB5AB66 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -232,7 +232,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AFA727A06F99733E45486519 /* [CP] Embed Pods Frameworks */ = {
+		DF2C6F414F2E59C1D8431880 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -392,7 +392,7 @@
 		};
 		67CE74F626ADC50800274003 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 906552C17D1D41530B916768 /* Pods-VKPhotoViewer.debug.xcconfig */;
+			baseConfigurationReference = C1D3F4AF1592F54B489E1BA8 /* Pods-VKPhotoViewer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -413,7 +413,7 @@
 		};
 		67CE74F726ADC50800274003 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A222B0C8223B06653F7DFF8E /* Pods-VKPhotoViewer.release.xcconfig */;
+			baseConfigurationReference = CE55955741A38476F025944C /* Pods-VKPhotoViewer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
