@@ -19,26 +19,14 @@ protocol AlbumDisplayLogic: class {
 
 private let reuseIdentifier = "Cell"
 
-class AlbumViewController: UICollectionViewController, AlbumDisplayLogic {
-    
-    //@IBOutlet private var nameTextField: UITextField!
-    
+class AlbumViewController: UICollectionViewController {
+
     var interactor: AlbumBusinessLogic?
     var router: (NSObjectProtocol & AlbumRoutingLogic & AlbumDataPassing)?
-    
-//    private var items: [CellIdentifiable] = []
-    
+
     private let networkManager = NetworkManager(networkComponents: NetworkComponents())
-    private var albumCount = 0 {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
-    private var album: [Photo]? {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+
+    private var album: [CellIdentifiable] = []
     
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -47,24 +35,29 @@ class AlbumViewController: UICollectionViewController, AlbumDisplayLogic {
         return dateFormatter
     } ()
     
-    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        AlbumConfigurator.shared.configure(with: self)
         collectionView.backgroundColor = .white
         self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        passRequest()
-        
         setupNavigationBar()
+        getAlbum()
     }
     
-    // MARK: Do something
+    private func getAlbum(){
+        interactor?.fetchAlbum()
+    }
     
-    func displayAlbum(viewModel: Album.ShowAlbum.ViewModel) {
-        albumCount = viewModel.count
-        album = viewModel.items
+    // MARK: Routing
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
     }
     
     private func setupNavigationBar() {
@@ -85,26 +78,18 @@ class AlbumViewController: UICollectionViewController, AlbumDisplayLogic {
             VKSdk.forceLogout()
         }
     }
+}
+
+//
+
+extension AlbumViewController: AlbumDisplayLogic {
     
-    // MARK: - PassRequest
-    
-    private func passRequest() {
-        interactor?.fetchAlbum()
-    }
-    
-    // MARK: Setup
-    
-    private func setup() {
-        let viewController = self
-        let interactor = AlbumInteractor()
-        let presenter = AlbumPresenter()
-        let router = AlbumRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
+    func displayAlbum(viewModel: Album.ShowAlbum.ViewModel) {
+        print(#function)
+        album = viewModel.items
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -117,36 +102,33 @@ extension AlbumViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albumCount
+        return album.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
-        
-//        cell.set(viewModel: <#T##PhotoCellViewModel#>)
-        guard let url = album?[indexPath.row].imgSrc else { return cell}
-        cell.photoItem.fetchImage(from: url)
-        cell.spinnerView.stopAnimating()
-        
+        let cellViewModel = album[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellViewModel.cellIdentifier, for: indexPath) as! PhotoCell
+        cell.cellModel = cellViewModel
+
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let url = album?[indexPath.row].imgSrc else { return }
-        guard let datePhoto = album?[indexPath.row].date else { return}
-        let photoVC = PhotoViewController()
-        photoVC.photoImageView.fetchImage(from: url)
-        
-        let date = Date(timeIntervalSince1970: TimeInterval(datePhoto))
-        let dateTitle = self.dateFormatter.string(from: date)
-        
-        photoVC.navigationTitle = dateTitle
-
-        let navVC = UINavigationController(rootViewController: photoVC)
-        navVC.modalPresentationStyle = .fullScreen
-        
-        present(navVC, animated: true)
+        print(#function)
+//        guard let url = album?[indexPath.row].imgSrc else { return }
+//        guard let datePhoto = album?[indexPath.row].date else { return}
+//        let photoVC = PhotoViewController()
+//        photoVC.photoImageView.fetchImage(from: url)
+//
+//        let date = Date(timeIntervalSince1970: TimeInterval(datePhoto))
+//        let dateTitle = self.dateFormatter.string(from: date)
+//
+//        photoVC.navigationTitle = dateTitle
+//
+//        let navVC = UINavigationController(rootViewController: photoVC)
+//        navVC.modalPresentationStyle = .fullScreen
+//
+//        present(navVC, animated: true)
     }
 }
 

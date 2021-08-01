@@ -12,19 +12,33 @@
 
 import UIKit
 
+typealias PhotoCellViewModel = Album.ShowAlbum.ViewModel.PhotoCell
+
+protocol CellIdentifiable {
+    var cellIdentifier: String { get }
+}
+
 enum Album {
-    // MARK: Use cases
     
     enum ShowAlbum {
-        struct Request {}
         
         struct Response {
-            let albumResponse: AlbumResponse?
+            let album: AlbumResponse?
         }
         
         struct ViewModel {
-            var count: Int
-            var items: [Photo]
+            struct PhotoCell: CellIdentifiable {
+                let imageUrl: String?
+                
+                var cellIdentifier: String {
+                    "Cell"
+                }
+                
+                init(photo: Photo) {
+                    imageUrl = photo.imgSrc
+                }
+            }
+            let items: [CellIdentifiable]
         }
     }
 }

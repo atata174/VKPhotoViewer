@@ -23,14 +23,11 @@ class AlbumPresenter: AlbumPresentationLogic {
     // MARK: Do something
     
     func presentAlbum(response: Album.ShowAlbum.Response) {
-        
-        let items = response.albumResponse?.items.count ?? 0
-        
-        let viewModel = Album.ShowAlbum.ViewModel(
-            count: items,
-            items: response.albumResponse?.items ?? []
-        )
+        var items: [PhotoCellViewModel] = []
+        response.album?.items.forEach { item in
+            items.append(PhotoCellViewModel(photo: item))
+        }
+        let viewModel = Album.ShowAlbum.ViewModel(items: items)
         viewController?.displayAlbum(viewModel: viewModel)
-
     }
 }

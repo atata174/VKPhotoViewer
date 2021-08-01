@@ -21,16 +21,16 @@ protocol AlbumDataStore {
 }
 
 class AlbumInteractor: AlbumBusinessLogic, AlbumDataStore {
-    
+
     private let networkManager = NetworkManager(networkComponents: NetworkComponents())
     var album: AlbumResponse?
     var presenter: AlbumPresentationLogic?
-
+    
     func fetchAlbum() {
-        networkManager.getAlbum { (album) in
-            self.album = album
-            let response = Album.ShowAlbum.Response(albumResponse: album)
-            self.presenter?.presentAlbum(response: response)
+        networkManager.getAlbum { [weak self] albumResponse in
+            self?.album = albumResponse
+            let response = Album.ShowAlbum.Response(album: albumResponse)
+            self?.presenter?.presentAlbum(response: response)
         }
     }
     

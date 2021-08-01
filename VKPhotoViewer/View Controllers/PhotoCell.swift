@@ -7,11 +7,24 @@
 
 import UIKit
 
-protocol PhotoCellViewModel {
-    var photoItem: ImageViewManager { get }
+protocol CellModelRepresentable {
+    var cellModel: CellIdentifiable? { get set }
 }
 
-class PhotoCell: UICollectionViewCell {
+class PhotoCell: UICollectionViewCell, CellModelRepresentable {
+    
+    var cellModel: CellIdentifiable? {
+        didSet {
+            updateViews()
+            spinnerView.stopAnimating()
+        }
+    }
+    
+    private func updateViews() {
+        guard let cellModel = cellModel as? PhotoCellViewModel else { return }
+        guard let url = cellModel.imageUrl else { return }
+        photoItem.fetchImage(from: url)
+    }
     
     var photoItem: ImageViewManager = {
         let image = ImageViewManager()
@@ -37,10 +50,6 @@ class PhotoCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func set(viewModel: PhotoCellViewModel){
-        photoItem = viewModel.photoItem
     }
     
     func setup() {
