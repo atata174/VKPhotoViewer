@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol PhotoCellViewModel {
+    var photoItem: ImageViewManager { get }
+}
+
 class PhotoCell: UICollectionViewCell {
     
-    var albumImage: ImageViewManager = {
+    var photoItem: ImageViewManager = {
         let image = ImageViewManager()
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
@@ -35,8 +39,13 @@ class PhotoCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(viewModel: PhotoCellViewModel){
+        photoItem = viewModel.photoItem
+    }
+    
     func setup() {
-        self.addSubview(albumImage)
+        
+        self.addSubview(photoItem)
         self.addSubview(spinnerView)
     }
     
@@ -44,7 +53,7 @@ class PhotoCell: UICollectionViewCell {
         super.layoutSubviews()
         let frameWidth = contentView.frame.size.width
         
-        albumImage.frame = CGRect(
+        photoItem.frame = CGRect(
             x: 0,
             y: 0,
             width: frameWidth,
