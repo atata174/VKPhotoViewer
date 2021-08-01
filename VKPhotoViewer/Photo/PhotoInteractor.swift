@@ -23,17 +23,17 @@ protocol PhotoDataStore {
 class PhotoInteractor: PhotoBusinessLogic, PhotoDataStore {
     private let networkManager = NetworkManager(networkComponents: NetworkComponents())
     var photo: Photo?
+    var worker: PhotoWorker?
     
     var presenter: PhotoPresentationLogic?
     
     // MARK: Do something
     
     func getPhoto() {
-        
         networkManager.getAlbum { [weak self] album in
-            
+            let album = album?.items
 //            self?.album = albumResponse
-//            let response = Album.ShowAlbum.Response(album: albumResponse)
+            let response = PhotoItem.ShowItem.Response(date: <#T##Int#>, sizes: <#T##[PhotoSizes]#>)
 //            self?.presenter?.presentAlbum(response: response)
         }
     }

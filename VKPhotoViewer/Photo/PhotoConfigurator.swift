@@ -13,15 +13,5 @@ class PhotoConfigurator {
     
     private init() {}
     
-    func configure(with viewController: PhotoViewController) {
-        let interactor = PhotoInteractor()
-        let presenter = PhotoPresenter()
-        let router = PhotoRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
+
 }

@@ -35,12 +35,21 @@ class PhotoViewController: UIViewController, PhotoDisplayLogic {
         }
     }
     
+    // MARK: Object lifecycle
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PhotoConfigurator.shared.configure(with: self)
-
         view.backgroundColor = .white
         
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
@@ -51,13 +60,29 @@ class PhotoViewController: UIViewController, PhotoDisplayLogic {
         passRequest()
     }
     
+    // Setup
+    
+    func setup() {
+        let viewController = self
+        let interactor = PhotoInteractor()
+        let presenter = PhotoPresenter()
+        let router = PhotoRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
     private func passRequest() {
 //        let request = CourseDetails.ShowDetails.Request()
 //        interactor?.provideCourseDetails(request: request)
     }
 
     func displayPhotoDetails(viewModel: PhotoItem.ShowItem.ViewModel) {
-        
+        photoImageView.fetchImage(from: viewModel.imgSrc)
+//        title = viewModel.date
     }
     
     private func setupNavBar(){

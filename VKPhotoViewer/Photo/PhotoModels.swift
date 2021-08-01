@@ -19,13 +19,12 @@ enum PhotoItem {
         struct Request {}
         
         struct Response {
-//            let album: Photo
             var date: Int
             var sizes: [PhotoSizes]
             var imgSrc: String {
                 self.getSize().url
             }
-            
+
             private func getSize() -> PhotoSizes{
                 if let sizeX = sizes.first(where: { $0.type == "x"}) {
                     return sizeX
@@ -40,19 +39,7 @@ enum PhotoItem {
         struct ViewModel {
             var date: Int
             var sizes: [PhotoSizes]
-            var imgSrc: String {
-                self.getSize().url
-            }
-            
-            private func getSize() -> PhotoSizes{
-                if let sizeX = sizes.first(where: { $0.type == "x"}) {
-                    return sizeX
-                } else if let bigSize = sizes.last {
-                    return bigSize
-                } else {
-                    return PhotoSizes(type: "wrong type", url: "wrong url")
-                }
-            }
+            var imgSrc: String
         }
     }
 }
